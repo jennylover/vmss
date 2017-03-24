@@ -9,20 +9,18 @@
         "description": "Size of VMs in the VM Scale Set."
       },
       "allowedValues": [
-        "Standard_D2",
-        "Standard_D3",
-        "Standard_D4",
-        "Standard_D11",
-        "Standard_D12",
+        "Standard_F1",
+        "Standard_D1",
         "Standard_DS1"
       ]
     },
     "imageSku": {
       "type": "string",
-      "defaultValue": "6.6",
+      "defaultValue": "6.8",
       "allowedValues": [
-        "6.6",
-        "7.0"
+        "6.8",
+        "7.2"
+        "7.3"
       ],
       "metadata": {
         "description": "OpenLogic CentOS version to use"
