@@ -62,11 +62,11 @@
   },
   "variables": {
     "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
-    "loadBalancerName": "iloadBalancer",
-    "loadBalancerFrontEndName": "iloadBalancerFrontEnd",
-    "loadBalancerBackEndName": "iloadBalancerBackEnd",
-    "loadBalancerProbeName": "iloadBalancerHttpProbe",
-    "loadBalancerNatPoolName": "iloadBalancerNatPool"
+    "loadBalancerName": "ilbBalancer",
+    "loadBalancerFrontEndName": "ilbBalancerFrontEnd",
+    "loadBalancerBackEndName": "ilbBalancerBackEnd",
+    "loadBalancerProbeName": "ilbBalancerHttpProbe",
+    "loadBalancerNatPoolName": "ilbBalancerNatPool"
   },
   "resources": [
     {
