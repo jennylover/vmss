@@ -53,6 +53,14 @@
         "description": "Admin password on all VMs."
       }
     },
+    "autoscaleMin": {
+      "type": "string",
+      "defaultValue": "2"
+    },
+    "autoscaleMax": {
+      "type": "string",
+      "defaultValue": "10"
+    },
     "existingSubnetResourceId": {
       "type": "string",
       "metadata": {
@@ -66,7 +74,7 @@
     "loadBalancerFrontEndName": "ilbBalancerFrontEnd",
     "loadBalancerBackEndName": "ilbBalancerBackEnd",
     "loadBalancerProbeName": "ilbBalancerHttpProbe",
-    "loadBalancerNatPoolName": "ilbBalancerNatPool"
+    "autoScaleName": "autoBackScale"
   },
   "resources": [
     {
@@ -182,6 +190,67 @@
               "intervalInSeconds": "5",
               "numberOfProbes": "2"
             }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Insights/autoscaleSettings",
+      "apiVersion": "2015-04-01",
+      "name": "[variables('autoScaleName')]"
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "name": "[variables('autoScaleName')]"
+        "targetResourceUri": "[concat('/subscriptions/',subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachineScaleSets/', parameters('vmssName'))]",
+        "enabled": true,
+        "profiles": [
+          {
+            "name": "Profile1",
+            "capacity": {
+              "minimum": "[parameters('autoscaleMin')]",
+              "maximum": "[parameters('autoscaleMax')]",
+              "default": "[parameters('autoscaleMin')]"
+            },
+            "rules": [
+              {
+                "metricTrigger": {
+                  "metricName": "Percentage CPU",
+                  "metricNamespace": "",
+                  "metricResourceUri": "[concat('/subscriptions/',subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Compute/virtualMachineScaleSets/', parameters('vmssName'))]",
+                  "timeGrain": "PT1M",
+                  "statistic": "Average",
+                  "timeWindow": "PT5M",
+                  "timeAggregation": "Average",
+                  "operator": "GreaterThan",
+                  "threshold": 60.0
+                },
+                "scaleAction": {
+                  "direction": "Increase",
+                  "type": "ChangeCount",
+                  "value": "1",
+                  "cooldown": "PT1M"
+                }
+              },
+              {
+                "metricTrigger": {
+                  "metricName": "Percentage CPU",
+                  "metricNamespace": "",
+                  "metricResourceUri": "[concat('/subscriptions/',subscription().subscriptionId, '/resourceGroups/',  resourceGroup().name, '/providers/Microsoft.Compute/virtualMachineScaleSets/', parameters('vmssName'))]",
+                  "timeGrain": "PT1M",
+                  "statistic": "Average",
+                  "timeWindow": "PT5M",
+                  "timeAggregation": "Average",
+                  "operator": "LessThan",
+                  "threshold": 30.0
+                },
+                "scaleAction": {
+                  "direction": "Decrease",
+                  "type": "ChangeCount",
+                  "value": "1",
+                  "cooldown": "PT5M"
+                }
+              }
+            ]
           }
         ]
       }
