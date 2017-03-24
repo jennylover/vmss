@@ -19,7 +19,7 @@
       "defaultValue": "6.8",
       "allowedValues": [
         "6.8",
-        "7.2"
+        "7.2",
         "7.3"
       ],
       "metadata": {
