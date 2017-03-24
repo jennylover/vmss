@@ -9,9 +9,9 @@
         "description": "Size of VMs in the VM Scale Set."
       },
       "allowedValues": [
-        "Standard_F1",
+        "Standard_A1",
         "Standard_D1",
-        "Standard_DS1"
+        "Standard_F1"
       ]
     },
     "imageSku": {
