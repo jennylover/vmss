@@ -61,6 +61,12 @@
       "type": "string",
       "defaultValue": "10"
     },
+    "sourceImageVhdUri": {
+      "type": "string",
+      "metadata": {
+        "description": "The source of the blob containing the custom image, must be in the same region of the deployment."
+      }
+    },
     "existingSubnetResourceId": {
       "type": "string",
       "metadata": {
@@ -104,7 +110,7 @@
               "createOption": "FromImage",
               "osType": "Linux",
               "image": {
-                "uri": "https://dock112.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/capsuck-osDisk.70962aec-4656-492c-87a4-48dffb95c0a8.vhd"
+                "uri" : "[parameters('sourceImageVhdUri')]"
               }
             }
           },
