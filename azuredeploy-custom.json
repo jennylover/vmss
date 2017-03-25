@@ -104,7 +104,7 @@
               "createOption": "FromImage",
               "osType": "Linux",
               "image": {
-                "id": "/subscriptions/f5b79181-fbad-488f-b0b8-8a17cbd8aba6/resourceGroups/RG_DEMO_VM/providers/Microsoft.Compute/images/cent68-vm-image-20170325222402"
+                "uri": "https://dock112.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/capsuck-osDisk.70962aec-4656-492c-87a4-48dffb95c0a8.vhd"
               }
             }
           },
