@@ -157,11 +157,11 @@
                       "https://dock112.blob.core.windows.net/imgs/lamp.sh"
                     ],
                     "commandToExecute": "bash lamp.sh"
-                  }
-                },
-                "protectedSettings": {
+                  },
+                  "protectedSettings": {
                     "storageAccountName": "dock112",
                     "storageAccountKey": "GD7gvyh5+pBas0BAnkJ8xDKwwE2AhmG+D949TEUDuXL0LJymK0rNKQuBVPMNHwAWnFye+TFTQH5ICQkRBQODMg=="
+                  }
                 }
               }
             ]
