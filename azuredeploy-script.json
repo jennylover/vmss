@@ -61,6 +61,12 @@
       "type": "string",
       "defaultValue": "10"
     },
+    "customScriptUri": {
+      "type": "string",
+      "metadata": {
+        "description": "The source of the blob containing the custom script of the deployment."
+      }
+    },
     "existingSubnetResourceId": {
       "type": "string",
       "metadata": {
@@ -76,7 +82,7 @@
     "loadBalancerBackEndName": "elbBalancerBackEnd",
     "loadBalancerProbeName": "elbBalancerHttpProbe",
     "loadBalancerNatPoolName": "elbBalancerNatPool",
-    "autoScaleName": "autoFrontScale"
+    "autoScaleName": "[toLower(substring(concat('autoFrontScale', uniqueString(resourceGroup().id)), 0, 9))]"
   },
   "resources": [
     {
