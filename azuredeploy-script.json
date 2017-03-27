@@ -67,6 +67,18 @@
         "description": "The source of the blob containing the custom script of the deployment."
       }
     },
+    "blobName": {
+      "type": "string",
+      "metadata": {
+        "description": "The source of the blob containing the custom script of the deployment."
+      }
+    },
+    "blobSecret": {
+      "type": "string",
+      "metadata": {
+        "description": "The source of the blob containing the custom script of the deployment."
+      }
+    },
     "existingSubnetResourceId": {
       "type": "string",
       "metadata": {
@@ -160,13 +172,13 @@
                   "autoUpgradeMinorVersion": true,
                   "settings": {
                     "fileUris": [
-                      "https://dock112.blob.core.windows.net/imgs/lamp.sh"
+                      "[parameters('customScriptUri')]"
                     ],
                     "commandToExecute": "bash lamp.sh"
                   },
                   "protectedSettings": {
-                    "storageAccountName": "dock112",
-                    "storageAccountKey": "GD7gvyh5+pBas0BAnkJ8xDKwwE2AhmG+D949TEUDuXL0LJymK0rNKQuBVPMNHwAWnFye+TFTQH5ICQkRBQODMg=="
+                    "storageAccountName": "[parameters('blobName')]",
+                    "storageAccountKey": "[parameters('blobSecret')]"
                   }
                 }
               }
